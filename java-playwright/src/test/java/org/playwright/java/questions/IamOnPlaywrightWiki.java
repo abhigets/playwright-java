@@ -1,11 +1,12 @@
 package org.playwright.java.questions;
 
 import com.microsoft.playwright.Page;
+import org.playwright.java.ui.HomePage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IamOnPlaywrightWiki {
-    public static void iAmOnPlaywrightWiki(Page page) {
-        assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
+    public static boolean amIOnHomePage(Page page) {
+        return HomePage.belronLogo(page).first().isVisible();
     }
 }

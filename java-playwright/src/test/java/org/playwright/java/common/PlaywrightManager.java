@@ -2,6 +2,8 @@ package org.playwright.java.common;
 
 import com.microsoft.playwright.*;
 
+import java.nio.file.Paths;
+
 public class PlaywrightManager {
     // Shared between all tests in this class.
     public static Playwright playwright = playwright = Playwright.create();
@@ -11,13 +13,17 @@ public class PlaywrightManager {
     BrowserContext context;
 
     public Page createContextAndPage() {
-        context = browser.newContext();
+        context = browser.newContext(
+                new Browser.NewContextOptions()
+                .setRecordVideoDir(Paths.get("video/"))
+                .setRecordVideoSize(640,480)
+        );
         return context.newPage();
     }
 
     public void launchBrowser() {
         browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions().setHeadless(false)
+                new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(1000)
         );
     }
 
