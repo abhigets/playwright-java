@@ -20,15 +20,15 @@ public class ServiceAppointment {
         serviceAppointmentThatIs(appointmentType, page).dblclick();
     }
 
-    public static boolean appointmentToolTipValueGreaterThanLabel(Page page, String field) {
+    public static boolean appointmentToolTipValueGreaterThan(String label, Page page) {
         serviceAppointmentThatIs(Dispatched,page).hover();
-        int textLength = FieldServicePage.serviceAppointmentToolTipText(field, page).length();
-        return textLength > field.length();
+        int textLength = FieldServicePage.serviceAppointmentToolTipText(label, page).length();
+        return textLength > label.length();
     }
 
-    public static boolean appointmentToolTipCheckBoxIsChecked(Page page, String field) {
+    public static boolean appointmentToolTipCheckBoxIsChecked(String label, Page page) {
         serviceAppointmentThatIs(Dispatched,page).hover();
-        return serviceAppointmentToolTipCheckBox(field, page).isChecked();
+        return serviceAppointmentToolTipCheckBox(label, page).isChecked();
     }
 
     private static void setServiceAppointmentToFailed(Page page) {

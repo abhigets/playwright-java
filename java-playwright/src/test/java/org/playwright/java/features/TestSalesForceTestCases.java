@@ -58,33 +58,33 @@ public class TestSalesForceTestCases {
         assertTrue(amIOnHomePage(page));
         navigateToFieldService(page);
         //Account ID:  M SMITH
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Account ID:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Account ID:", page));
         //Remedy Job Id:  000001024673696
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Remedy Job Id:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Remedy Job Id:", page));
         // Work Type ID:  Stock Collect
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Work Type ID:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Work Type ID:", page));
         // Zip/Postal Code:  MK44 3US
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Zip/Postal Code:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Zip/Postal Code:", page));
         // Is Branch Appointment?:
-        assertTrue(appointmentToolTipCheckBoxIsChecked(page,"Is Branch Appointment?:"));
+        assertTrue(appointmentToolTipCheckBoxIsChecked("Is Branch Appointment?:", page));
         // Make Of Vehicle:  MERCEDES CARS
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Make Of Vehicle:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Make Of Vehicle:", page));
         // Model Of Vehicle:  GLA
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Model Of Vehicle:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Model Of Vehicle:", page));
         // Gantt Label:  M SMITH / FP67FSD
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Gantt Label:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Gantt Label:", page));
         // Work Order Number:  00003862
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Work Order Number:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Work Order Number:", page));
         // Status:  Dispatched
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Status:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Status:", page));
         // Earliest Start Permitted:  Tue, 30 Apr 2024 07:00
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Earliest Start Permitted:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Earliest Start Permitted:", page));
         // Due Date:  Fri, 3 May 2024 10:30
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Due Date:"));
+        assertTrue(appointmentToolTipValueGreaterThan("Due Date:", page));
         // Start Fri, 3 May 2024 08:00
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Start"));
+        assertTrue(appointmentToolTipValueGreaterThan("Start", page));
         // Finish Fri, 3 May 2024 08:05
-        assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Finish"));
+        assertTrue(appointmentToolTipValueGreaterThan("Finish", page));
     }
 
 }
