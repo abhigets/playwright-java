@@ -7,9 +7,8 @@ import org.playwright.java.common.PlaywrightManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.playwright.java.actions.NavigateToUATEnv.navigateToUATEnv;
-import static org.playwright.java.actions.ServiceAppointment.appointmentToolTipCheckBoxIsChecked;
-import static org.playwright.java.actions.ServiceAppointment.appointmentToolTipValueGreaterThanLabel;
-import static org.playwright.java.actions.UpdateExistingFieldServiceAppointment.updateExistingFieldServiceAppointmentTo;
+import static org.playwright.java.actions.ServiceAppointment.*;
+import static org.playwright.java.actions.NavigateToFieldService.navigateToFieldService;
 import static org.playwright.java.questions.IamOnPlaywrightWiki.amIOnHomePage;
 
 public class TestSalesForceTestCases {
@@ -44,7 +43,8 @@ public class TestSalesForceTestCases {
     void shouldBeAbleToSetFailedOnArriveState()  {
         navigateToUATEnv(page);
         assertTrue(amIOnHomePage(page));
-        updateExistingFieldServiceAppointmentTo(page);
+        navigateToFieldService(page);
+        selectAnAppointment(page);
     }
 
     //FOUK-145 Appointment Tooltip
@@ -52,6 +52,7 @@ public class TestSalesForceTestCases {
     void shouldBeAbleToSeeAppointmentTooltip()  {
         navigateToUATEnv(page);
         assertTrue(amIOnHomePage(page));
+        navigateToFieldService(page);
         //Account ID:  M SMITH
         assertTrue(appointmentToolTipValueGreaterThanLabel(page,"Account ID:"));
         //Remedy Job Id:  000001024673696

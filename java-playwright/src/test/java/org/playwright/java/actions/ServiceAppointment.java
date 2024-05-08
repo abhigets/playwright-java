@@ -6,7 +6,7 @@ import com.microsoft.playwright.Page;
 import static org.playwright.java.ui.FieldServicePage.getFieldServiceFrame;
 
 public class ServiceAppointment {
-    static void selectAnAppointment(Page page) {
+    public static void selectAnAppointment(Page page) {
         FrameLocator fieldServiceTab = getFieldServiceFrame(page);
         fieldServiceTab.locator(".eventStatusTravel.GanttCustomStatus_Arrived").first().dblclick();
         FrameLocator serviceAppointmentPopUp = fieldServiceTab.frameLocator("iframe[ng-show*=\"selectedSubTabService == 'details'\"]");
