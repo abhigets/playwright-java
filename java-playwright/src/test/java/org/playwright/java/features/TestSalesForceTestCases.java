@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.playwright.java.actions.NavigateToUATEnv.navigateToUATEnv;
 import static org.playwright.java.actions.ServiceAppointment.*;
 import static org.playwright.java.actions.NavigateToFieldService.navigateToFieldService;
-import static org.playwright.java.questions.IamOnPlaywrightWiki.amIOnHomePage;
+import static org.playwright.java.questions.IamOnFrontOfficeHomePage.amIOnHomePage;
 import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.Arrived;
 import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.FailedOnArrival;
 
