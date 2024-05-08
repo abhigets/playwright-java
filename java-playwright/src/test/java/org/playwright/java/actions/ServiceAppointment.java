@@ -12,7 +12,10 @@ import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.*;
 public class ServiceAppointment {
     public static void ChangeStatusAsFailedAfterArrival(Page page) {
         ServiceAppointmentPopUp.edit(page).click();
-        setServiceAppointmentToFailed(page);
+        ServiceAppointmentPopUp.setStatusDropDownTo(page).selectOption("Failed After Arrive");
+        ServiceAppointmentPopUp.setFailureReasonDropDownTo(page).selectOption("Glass/Parts Damaged");
+        ServiceAppointmentPopUp.setSubFailureReasonDropDownTo(page).selectOption("Glass Damaged");
+        ServiceAppointmentPopUp.saveChanges(page).click();
         ServiceAppointmentPopUp.close(page).click();
     }
 
@@ -30,13 +33,4 @@ public class ServiceAppointment {
         serviceAppointmentThatIs(Dispatched,page).hover();
         return serviceAppointmentToolTipCheckBox(label, page).isChecked();
     }
-
-    private static void setServiceAppointmentToFailed(Page page) {
-        FrameLocator serviceAppointmentPopUp = ServiceAppointmentPopUp.getServiceAppointmentPopUp(page);
-        serviceAppointmentPopUp.getByText("Status").locator("xpath=../following-sibling::td[1]//select").selectOption("Failed After Arrive");
-        serviceAppointmentPopUp.locator("select[name*=\"id33:5\"]").selectOption("Glass/Parts Damaged");
-        serviceAppointmentPopUp.locator("select[name*=\"id33:7\"]").selectOption("Glass Damaged");
-        serviceAppointmentPopUp.locator("div.pbHeader input.btn[value=\"Save Changes\"]").click();
-    }
-
 }

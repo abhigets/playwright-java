@@ -15,8 +15,8 @@ public class PlaywrightManager {
     public Page createContextAndPage() {
         context = browser.newContext(
                 new Browser.NewContextOptions()
-                .setRecordVideoDir(Paths.get("video/"))
-                .setRecordVideoSize(640,480)
+//                .setRecordVideoDir(Paths.get("video/"))
+//                .setRecordVideoSize(640,480)
         );
         return context.newPage();
     }
