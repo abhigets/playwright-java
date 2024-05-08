@@ -10,6 +10,8 @@ import static org.playwright.java.actions.NavigateToUATEnv.navigateToUATEnv;
 import static org.playwright.java.actions.ServiceAppointment.*;
 import static org.playwright.java.actions.NavigateToFieldService.navigateToFieldService;
 import static org.playwright.java.questions.IamOnPlaywrightWiki.amIOnHomePage;
+import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.Arrived;
+import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.FailedOnArrival;
 
 public class TestSalesForceTestCases {
 
@@ -44,7 +46,9 @@ public class TestSalesForceTestCases {
         navigateToUATEnv(page);
         assertTrue(amIOnHomePage(page));
         navigateToFieldService(page);
-        selectAnAppointment(page);
+        viewServiceAppointmentThat(Arrived,page);
+        ChangeStatusAsFailedAfterArrival(page);
+        viewServiceAppointmentThat(FailedOnArrival,page);
     }
 
     //FOUK-145 Appointment Tooltip

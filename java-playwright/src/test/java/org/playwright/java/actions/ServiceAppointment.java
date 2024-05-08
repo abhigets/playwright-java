@@ -2,36 +2,41 @@ package org.playwright.java.actions;
 
 import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Page;
+import org.playwright.java.ui.FieldServicePage;
+import org.playwright.java.ui.FieldServicePage.ServiceAppointmentType;
+import org.playwright.java.ui.ServiceAppointmentPopUp;
 
-import static org.playwright.java.ui.FieldServicePage.getFieldServiceFrame;
+import static org.playwright.java.ui.FieldServicePage.*;
+import static org.playwright.java.ui.FieldServicePage.ServiceAppointmentType.*;
 
 public class ServiceAppointment {
-    public static void selectAnAppointment(Page page) {
-        FrameLocator fieldServiceTab = getFieldServiceFrame(page);
-        fieldServiceTab.locator(".eventStatusTravel.GanttCustomStatus_Arrived").first().dblclick();
-        FrameLocator serviceAppointmentPopUp = fieldServiceTab.frameLocator("iframe[ng-show*=\"selectedSubTabService == 'details'\"]");
-        serviceAppointmentPopUp.locator("div.pbHeader input[value=\"Edit\"]").click();
-        serviceAppointmentPopUp.getByText("Status").locator("xpath=../following-sibling::td[1]//select").selectOption("Failed After Arrive");
-        serviceAppointmentPopUp.locator("select[name*=\"id33:5\"]").selectOption("Glass/Parts Damaged");
-        serviceAppointmentPopUp.locator("select[name*=\"id33:7\"]").selectOption("Glass Damaged");
-        serviceAppointmentPopUp.locator("div.pbHeader input.btn[value=\"Save Changes\"]").click();
-        fieldServiceTab.locator(".CloseLightbox").click();
-        fieldServiceTab.locator(".dhx_noTravel.GanttCustomStatus_FailedAfterArrive").first().dblclick();
-        serviceAppointmentPopUp.getByText("Failed After Arrive").click();
+    public static void ChangeStatusAsFailedAfterArrival(Page page) {
+        ServiceAppointmentPopUp.edit(page).click();
+        setServiceAppointmentToFailed(page);
+        ServiceAppointmentPopUp.close(page).click();
+    }
+
+    public static void viewServiceAppointmentThat(ServiceAppointmentType appointmentType, Page page) {
+        serviceAppointmentThatIs(appointmentType, page).dblclick();
     }
 
     public static boolean appointmentToolTipValueGreaterThanLabel(Page page, String field) {
-        FrameLocator fieldServiceTab = getFieldServiceFrame(page);
-        fieldServiceTab.locator(".eventStatusDispatched.GanttCustomStatus_Dispatched").first().hover();
-        int textLength = fieldServiceTab.locator(".expertTooltip").getByText(field).locator("xpath=..").first().textContent().length();
+        serviceAppointmentThatIs(Dispatched,page).hover();
+        int textLength = FieldServicePage.serviceAppointmentToolTipText(field, page).length();
         return textLength > field.length();
     }
 
     public static boolean appointmentToolTipCheckBoxIsChecked(Page page, String field) {
-        FrameLocator fieldServiceTab = getFieldServiceFrame(page);
-        fieldServiceTab.locator(".eventStatusDispatched.GanttCustomStatus_Dispatched").first().hover();
-        return fieldServiceTab.locator(".expertTooltip").getByText(field).locator("xpath=..").locator("input").isChecked();
+        serviceAppointmentThatIs(Dispatched,page).hover();
+        return serviceAppointmentToolTipCheckBox(field, page).isChecked();
     }
 
+    private static void setServiceAppointmentToFailed(Page page) {
+        FrameLocator serviceAppointmentPopUp = ServiceAppointmentPopUp.getServiceAppointmentPopUp(page);
+        serviceAppointmentPopUp.getByText("Status").locator("xpath=../following-sibling::td[1]//select").selectOption("Failed After Arrive");
+        serviceAppointmentPopUp.locator("select[name*=\"id33:5\"]").selectOption("Glass/Parts Damaged");
+        serviceAppointmentPopUp.locator("select[name*=\"id33:7\"]").selectOption("Glass Damaged");
+        serviceAppointmentPopUp.locator("div.pbHeader input.btn[value=\"Save Changes\"]").click();
+    }
 
 }
